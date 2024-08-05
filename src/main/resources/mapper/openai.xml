@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myinvestment.openai.repository.DiaryMapper">
+
+    <resultMap id="searchPrompt" type="AIFeedbackPromptDto">
+        <result column="date" property="date"/>
+        <result column="content" property="content"/>
+        <result column="feedback" property="feedback"/>
+    </resultMap>
+
+    <resultMap id="searchStrategy" type="AIStrategyPromptDto">
+        <result column="date" property="date"/>
+        <result column="strategy" property="strategy"/>
+        <result column="reasoning" property="reasoning"/>
+    </resultMap>
+    
+    
+    
+    <select id="getAIFeedbacks" parameterType="string" resultMap="searchPrompt">
+        select date, content, feedback
+        from diary
+        where user_id = #{userId}
+        order by date;
+    </select>
+
+    <select id="getAIStrategy" parameterType="string" resultMap="searchStrategy">
+        select date, strategy, reasoning
+        from diary
+        where user_id = #{userId}
+        order by date;
+    </select>
+
+</mapper>

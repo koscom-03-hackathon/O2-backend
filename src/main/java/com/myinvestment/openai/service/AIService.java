@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class AIService {
 
         for (AIStrategyPromptDto strategy : strategies){
             prompt.append("\n<date>").append(strategy.getDate()).append("<date>");
-            prompt.append("\n<strategy>").append(strategy.getStrategy()).append("<strategy>\n");
+            prompt.append("\n<strategy>").append(strategy.getStrategy()).append("<strategy>");
             prompt.append("\n<reasoning>").append(strategy.getReasoning()).append("<reasoning\n");
         }
 

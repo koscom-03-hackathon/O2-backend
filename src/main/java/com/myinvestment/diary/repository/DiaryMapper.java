@@ -13,7 +13,8 @@ public interface DiaryMapper {
     DiaryResponseDto findDiaryById(int id) throws MapperException;
     void createDiary(DiaryCreationRequestDto diaryCreationRequestDto) throws MapperException;
     int findLatestDiary() throws MapperException;
-    List<PortfolioResponseDto> getPortfolio(String userId) throws MapperException;
+    List<PortfolioResponseDto> getPortfolio(PortfolioRequestDto portfolioRequestDto) throws MapperException;
     void modifyDiary(DiaryModifyRequestDto diaryModifyRequestDto) throws MapperException;
+    void deleteDiary(DiaryDeletionRequestDto diaryDeletionRequestDto) throws MapperException;
 
 }

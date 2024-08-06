@@ -50,10 +50,10 @@
         limit 1;
     </select>
 
-    <select id="getPortfolio" parameterType="string" resultMap="getPortfolio">
-        select stock, amount, quantity, previous_quote, current_qoute
+    <select id="getPortfolio" parameterType="PortfolioRequestDto" resultMap="getPortfolio">
+        select stock, amount, quantity, previous_quote, current_quote
         from portfolio
-        where user_id = #{userId};
+        where user_id = #{userId} and date = #{date};
     </select>
 
     <update id="modifyDiary" parameterType="DiaryModifyRequestDto">
@@ -62,5 +62,10 @@
             strategy = #{strategy}, reasoning = #{reasoning}, feedback = #{feedback}
         where id = #{id};
     </update>
+
+    <delete id="deleteDiary" parameterType="DiaryDeletionRequestDto">
+        delete from diary
+        where id = #{id};
+    </delete>
 
 </mapper>

@@ -17,13 +17,13 @@ public class AIController {
     private final AIService service;
 
     @GetMapping("/diary/feedback/openai")
-    @CrossOrigin("*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public AIResponseDto getAIFeedback(@RequestParam String userId){
         return service.getAIFeedback(userId);
     }
 
     @GetMapping("/diary/strategy/openai")
-    @CrossOrigin("*")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public AIResponseDto getAIStrategy(@RequestParam String userId){
         return service.getAIStrategy(userId);
     }

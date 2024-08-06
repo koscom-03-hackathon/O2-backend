@@ -53,7 +53,7 @@
     <select id="getPortfolio" parameterType="PortfolioRequestDto" resultMap="getPortfolio">
         select stock, amount, quantity, previous_quote, current_quote
         from portfolio
-        where user_id = #{userId} and date = #{date};
+        where date = #{date};
     </select>
 
     <update id="modifyDiary" parameterType="DiaryModifyRequestDto">

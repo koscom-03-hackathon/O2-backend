@@ -36,7 +36,6 @@ public class DiaryController {
     public List<PortfolioResponseDto> getPortfolio(@RequestParam String userId, @RequestParam String date){
         return diaryService.getPortfolio(
                 PortfolioRequestDto.builder()
-                        .userId(userId)
                         .date(date)
                         .build()
         );

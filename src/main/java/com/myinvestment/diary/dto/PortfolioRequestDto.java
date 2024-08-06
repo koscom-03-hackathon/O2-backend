@@ -7,7 +7,6 @@ import lombok.Getter;
 @Builder
 public class PortfolioRequestDto {
 
-    private String userId;
     private String date;
 
 }

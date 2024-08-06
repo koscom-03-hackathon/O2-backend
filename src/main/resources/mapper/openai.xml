@@ -13,21 +13,36 @@
         <result column="strategy" property="strategy"/>
         <result column="reasoning" property="reasoning"/>
     </resultMap>
+
+    <resultMap id="searchPortfolio" type="PortfolioDto">
+        <result column="stock" property="stock"/>
+        <result column="date" property="date"/>
+        <result column="amount" property="amount"/>
+        <result column="quantity" property="quantity"/>
+        <result column="previous_quote" property="previousQuote"/>
+        <result column="current_quote" property="currentQuote"/>
+    </resultMap>
     
     
     
     <select id="getAIFeedbacks" parameterType="string" resultMap="searchPrompt">
         select date, content, feedback
         from diary
-        where user_id = #{userId}
+        where type = 'feedback'
         order by date;
     </select>
 
     <select id="getAIStrategy" parameterType="string" resultMap="searchStrategy">
         select date, strategy, reasoning
         from diary
-        where user_id = #{userId}
+        where type = 'strategy'
         order by date;
+    </select>
+
+    <select id="getAllPortfolio" resultMap="searchPortfolio">
+        select stock, date, amount, quantity, previous_quote, current_quote
+        from portfolio
+        order by date desc;
     </select>
 
 </mapper>

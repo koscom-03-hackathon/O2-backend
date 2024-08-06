@@ -18,14 +18,14 @@ public class AIController {
 
     @GetMapping("/diary/feedback/openai")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public AIResponseDto getAIFeedback(@RequestParam String userId){
-        return service.getAIFeedback(userId);
+    public AIResponseDto getAIFeedback(){
+        return service.getAIFeedback();
     }
 
     @GetMapping("/diary/strategy/openai")
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    public AIResponseDto getAIStrategy(@RequestParam String userId){
-        return service.getAIStrategy(userId);
+    public AIResponseDto getAIStrategy(){
+        return service.getAIStrategy();
     }
 
 }

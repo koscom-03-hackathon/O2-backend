@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface DiaryMapper {
+public interface AIMapper {
 
     List<AIFeedbackPromptDto> getAIFeedbacks(String userId) throws MapperException;
     List<AIStrategyPromptDto> getAIStrategy(String userId) throws MapperException;

@@ -1,7 +1,7 @@
 package com.myinvestment.openai.service;
 
 import com.myinvestment.openai.dto.*;
-import com.myinvestment.openai.repository.DiaryMapper;
+import com.myinvestment.openai.repository.AIMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class AIService {
 
-    private final DiaryMapper diaryMapper;
+    private final AIMapper diaryMapper;
 
     @Value("${openai.model}")
     private String model;

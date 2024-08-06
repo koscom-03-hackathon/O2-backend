@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myinvestment.diary.repository.DiaryMapper">
+
+    <resultMap id="findAllDiaries" type="DiaryResponseDto">
+        <result column="id" property="id"/>
+        <result column="date" property="date"/>
+        <result column="title" property="title"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+        <result column="strategy" property="strategy"/>
+        <result column="reasoning" property="reasoning"/>
+        <result column="feedback" property="feedback"/>
+    </resultMap>
+
+    <resultMap id="creationPkResponse" type="DiaryPkResponseDto">
+        <result column="id" property="id"/>
+    </resultMap>
+
+    <resultMap id="getPortfolio" type="PortfolioResponseDto">
+        <result column="stock" property="stock"/>
+        <result column="amount" property="amount"/>
+        <result column="quantity" property="quantity"/>
+        <result column="previous_quote" property="previousQuote"/>
+        <result column="current_quote" property="currentQuote"/>
+    </resultMap>
+
+    <select id="getAllDiaries" parameterType="string" resultMap="findAllDiaries">
+        select id, date, title, type, content, strategy, reasoning, feedback
+        from diary
+        where DATE_FORMAT(date, '%Y-%m') = #{date}
+        order by date;
+    </select>
+
+    <select id="findDiaryById" parameterType="int" resultMap="findAllDiaries">
+        select id, date, title, type, content, strategy, reasoning, feedback
+        from diary
+        where id = #{id};
+    </select>
+
+    <insert id="createDiary" parameterType="DiaryCreationRequestDto">
+        insert into diary(date, title, type, content, strategy, reasoning, feedback)
+        values (#{date}, #{title}, #{type}, #{content}, #{strategy}, #{reasoning}, #{feedback});
+    </insert>
+
+    <select id="findLatestDiary" resultType="int">
+        select id
+        from diary
+        order by id desc
+        limit 1;
+    </select>
+
+    <select id="getPortfolio" parameterType="string" resultMap="getPortfolio">
+        select stock, amount, quantity, previous_quote, current_qoute
+        from portfolio
+        where user_id = #{userId};
+    </select>
+
+    <update id="modifyDiary" parameterType="DiaryModifyRequestDto">
+        update diary
+        set date = #{date}, title = #{title}, content = #{content}, type = #{type},
+            strategy = #{strategy}, reasoning = #{reasoning}, feedback = #{feedback}
+        where id = #{id};
+    </update>
+
+</mapper>
